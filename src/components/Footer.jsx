@@ -2,9 +2,9 @@ import React from "react";
 import { FaFacebook,FaTiktok, FaInstagram ,FaPhone} from "react-icons/fa";
 const Footer = () => {
   return (
-    <footer className="bg-gray-200 text-white py-6 absolute bottom-0 right-0 left-0">
+    <footer className="bg-gray-200 text-white py-6 relative bottom-0 right-0 left-0">
         <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="flex flex-row justify-between items-center space-y-4 md:space-y-0">
           
           <div className="flex items-center space-x-2">
             <FaPhone size={20} className="text-green-400" />

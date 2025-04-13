@@ -3,7 +3,7 @@ import React from "react";
 const Nav = () => {
     return (
 
-        <nav className="sticky top-0 left-0 right-0 bg-gray-200 shadow-md">
+        <nav className="relative top-0 left-0 right-0 bg-gray-200 shadow-md">
             <div className="flex justify-between items-center px-4 py-4">
                 <div>
                     <img className="h-14 w-16 rounded-lg" src="https://images.pexels.com/photos/4041160/pexels-photo-4041160.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" />
