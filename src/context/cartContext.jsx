@@ -5,11 +5,18 @@ import { allProducts } from "../components/data/products";
 export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [products] = useState(allProducts);
   const [cartItems, setCartItems] = useState(
-    JSON.parse(localStorage.getItem("cartItems")) || []
+    JSON.parse(sessionStorage.getItem("cartItems")) || []
   );
 
+  const openCart = () => {
+    setIsOpen(true);
+  };
+  const closeCart = () => {
+    setIsOpen(false);
+  };
   const BuyCart = () => {
     if (cartItems.length === 0) {
       alert("Your cart is empty");
@@ -81,6 +88,9 @@ export const ContextProvider = ({ children }) => {
         totalQuantity,
         totalPrice,
         BuyCart,
+        isOpen,
+        openCart,
+        closeCart
       }}
     >
       {children}

@@ -23,7 +23,8 @@ const Tshirt = () => {
             className="bg-gray-500 cursor-pointer text-white py-1 px-3 rounded-md hover:bg-gray-600 transition"
           >
             Add to Cart
-          </button>        </motion.div>
+          </button>    
+             </motion.div>
       ))}
     </div>
   )
