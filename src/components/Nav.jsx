@@ -1,5 +1,6 @@
 import React from "react";
 import Cart from "./cart";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
     return (
@@ -9,10 +10,19 @@ const Nav = () => {
                 <div>
                     <img className="h-14 w-16 rounded-lg" src="https://images.pexels.com/photos/4041160/pexels-photo-4041160.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" />
                 </div>
-               
+                <div>
+                    <Link to="/admin/orders" className="text-blue-500 hover:underline">
+                        orders
+                    </Link>
+                </div>
+                <div>
+                    <Link to="/" className="text-blue-500 hover:underline">
+                        home
+                    </Link>
+                </div>
                 <div className="flex">
-                <span className="text-2xl font-bold text-gray-700">Runzu</span>
-                <Cart/>
+                    <span className="text-2xl font-bold text-gray-700">Runzu</span>
+                    <Cart />
                 </div>
             </div>
 

@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
 import { Context } from "../context/cartContext";
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  const { openCart, isOpen, totalQuantity, cartItems, closeCart } = useContext(Context);
+  const { openCart, isOpen, totalQuantity, totalPrice, cartItems, closeCart, handleRemoveFromCart, handleAddToCart } = useContext(Context);
+
+  // داخل كمبوننت Cart
+  const navigate = useNavigate();
 
   return (
     <>
       {/* Cart Button */}
       <button
-        className="relative w-8 h-8 rounded-full border border-blue-500 text-blue-500 flex items-center justify-center"
+        className="relative cursor-pointer w-8 h-8 rounded-full border border-blue-500 text-blue-500 flex items-center justify-center"
         onClick={openCart}
       >
         {/* Cart Icon */}
@@ -32,7 +36,7 @@ const Cart = () => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            className="fixed inset-0 bg-black/50 z-40"
             onClick={closeCart}
           ></div>
 
@@ -53,36 +57,64 @@ const Cart = () => {
 
             {/* Items */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {cartItems.length === 0 ? (
-                <p className="text-gray-500">Your cart is empty.</p>
-              ) : (
-                cartItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className="flex items-center gap-3 border-b pb-2"
-                  >
-                    <img
-                      src={item.Image}
-                      alt={item.name}
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <h3 className="text-sm font-medium">{item.name}</h3>
-                      <p className="text-xs text-gray-500">${item.price}</p>
+              {cartItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex justify-between gap-3 border-b pb-3"
+                >
+                  {/* صورة المنتج */}
+                  <img
+                    src={item.Image}
+                    alt={item.name}
+                    className="w-16 h-16 rounded-md object-cover"
+                  />
+
+                  {/* تفاصيل المنتج */}
+                  <div className="flex flex-col justify-between flex-1">
+                    <h3 className="text-sm text-right font-medium">{item.name}</h3>
+
+                    {/* الكمية والتحكم */}
+                    <div className="flex items-center gap-2 mt-1">
+                      <button
+                        className="bg-gray-200 px-2 cursor-pointer rounded"
+                        onClick={() => handleRemoveFromCart(item)}
+                      >
+                        -
+                      </button>
+                      <span className="text-sm">{item.quantity}</span>
+                      <button
+                        className="bg-gray-200 px-2 cursor-pointer rounded"
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    {/* السعر */}
+                    <div className="text-xs text-gray-600 mt-1">
+                      EGP {item.price * item.quantity}
+
                     </div>
                   </div>
-                ))
-              )}
+                </div>
+              ))}
+
             </div>
 
             {/* Footer */}
             <div className="p-4 border-t">
               <button
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium"
-                onClick={() => alert("Checkout Coming Soon!")}
+                className="w-full bg-gray-600 cursor-pointer hover:bg-gray-700 text-white py-2 px-4 rounded-lg text-sm font-medium"
+                onClick={() => {
+                  closeCart();      // يقفل السايد بار
+                  navigate("/checkout"); // يروح للشيك أوت
+                }}
               >
                 Checkout
               </button>
+              <span>
+                EGP{totalPrice}
+              </span>
             </div>
           </div>
         </>
