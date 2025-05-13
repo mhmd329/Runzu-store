@@ -5,7 +5,7 @@ import Checkout from './components/checkout/CheckOut';
 import Footer from './components/Footer'
 import Home from './components/Home'
 import Nav from './components/Nav'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductDetails from './components/proDetails/ProductDetails';
