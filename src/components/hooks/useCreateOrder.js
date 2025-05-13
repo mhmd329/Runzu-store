@@ -4,7 +4,7 @@ export const useDeleteOrder = () => {
     
     return useMutation({
       mutationFn: async (orderId) => {
-        const response = await fetch(`http://localhost:3001/orders/${orderId}`, {
+        const response = await fetch(`https://back-runzu-production.up.railway.app/orders/${orderId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const useCreateOrder = () => {
             console.log("🔄 Sending order:", orderData);
             console.log("Order data structure is valid:", orderData.customer && orderData.items.length > 0 && orderData.totalAmount > 0);
 
-            const response = await fetch("http://localhost:3001/orders", {
+            const response = await fetch("https://back-runzu-production.up.railway.app/orders", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export const useGetOrders = () => {
     return useQuery({
         queryKey: ['orders'], // مفتاح فريد للاستعلام
         queryFn: async () => {
-            const response = await fetch("http://localhost:3001/orders");
+            const response = await fetch("https://back-runzu-production.up.railway.app/orders");
 
             if (!response.ok) {
                 throw new Error("خطأ في جلب الطلبات");
