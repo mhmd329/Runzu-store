@@ -17,32 +17,37 @@ const Home = () => {
 
   return (
     <>
-    <div className="flex justify-center items-center mt-8 space-x-8 bg-gray-200 py-4">
-  <button
-    onClick={handleShowPants}
-    className={`flex flex-col items-center cursor-pointer py-4 px-6 rounded-xl shadow-lg transition duration-300 
+      <div className="flex justify-center items-center mt-8 space-x-8 bg-gray-200 py-4">
+        <button
+          onClick={handleShowPants}
+          className={`flex flex-col items-center cursor-pointer py-4 px-6 rounded-xl shadow-lg transition duration-300 
       ${selectedCategory === "pants" ? "bg-gray-700" : "bg-gray-500 hover:bg-gray-700"} text-white`}
-  >
-    <PiPantsLight size={40} /> 
-    <span className="mt-2 text-sm">Pants</span>
-  </button>
+        >
+          <PiPantsLight size={40} />
+          <span className="mt-2 text-sm">Pants</span>
+        </button>
 
-  <button
-    onClick={handleShowTshirts}
-    className={`flex flex-col items-center cursor-pointer py-4 px-6 rounded-xl shadow-lg transition duration-300 
+        <button
+          onClick={handleShowTshirts}
+          className={`flex flex-col items-center cursor-pointer py-4 px-6 rounded-xl shadow-lg transition duration-300 
       ${selectedCategory === "tshirts" ? "bg-gray-700" : "bg-gray-500 hover:bg-gray-700"} text-white`}
-  >
-    <FaTshirt size={40} /> 
-    <span className="mt-2 text-sm">T-Shirt</span>
-  </button>
-</div>
+        >
+          <FaTshirt size={40} />
+          <span className="mt-2 text-sm">T-Shirt</span>
+        </button>
+      </div>
 
-    <div className="mt-8">
-        {selectedCategory === "pants" && <Pants/>}
-        {selectedCategory === "tshirts" && <Tshirt/>}
+      <div className="mt-8">
+        <div className="text-center">
+          <p>m:55,65</p>
+          <p>l:55,65</p>
+          <p>xl:55,65</p>
+        </div>
+        {selectedCategory === "pants" && <Pants />}
+        {selectedCategory === "tshirts" && <Tshirt />}
       </div>
     </>
-    
+
   );
 };
 

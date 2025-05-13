@@ -57,9 +57,9 @@ const Cart = () => {
 
             {/* Items */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {cartItems.map((item) => (
+              {cartItems.map((item, index) => (
                 <div
-                  key={item.id}
+                  key={item.id && index}
                   className="flex justify-between gap-3 border-b pb-3"
                 >
                   {/* صورة المنتج */}
@@ -93,6 +93,7 @@ const Cart = () => {
                     {/* السعر */}
                     <div className="text-xs text-gray-600 mt-1">
                       EGP {item.price * item.quantity}
+                      <p className="text-xs text-gray-600">Size: {item.selectedSize}</p> {/* عرض المقاس هنا */}
 
                     </div>
                   </div>

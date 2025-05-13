@@ -3,7 +3,7 @@ import { Context } from '../context/cartContext';
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
-  const { cartItems,customerData ,totalPrice, BuyCart, handleCustomerInput } = useContext(Context);
+  const { cartItems, customerData, totalPrice, BuyCart, handleCustomerInput } = useContext(Context);
   const navigate = useNavigate();
 
   return (
@@ -23,7 +23,6 @@ const Checkout = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
               onChange={handleCustomerInput}
               value={customerData.name}  // ربط البيانات مع الـ state
-
               required
             />
           </div>
@@ -36,8 +35,7 @@ const Checkout = () => {
               placeholder="ادخل عنوانك" 
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
               onChange={handleCustomerInput}
-              value={customerData.adress}  // ربط البيانات مع الـ state
-
+              value={customerData.address}  // ربط البيانات مع الـ state
               required
             />
           </div>
@@ -51,7 +49,6 @@ const Checkout = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
               onChange={handleCustomerInput}
               value={customerData.phone}  // ربط البيانات مع الـ state
-
               required
             />
           </div>
@@ -68,8 +65,8 @@ const Checkout = () => {
       <div className="bg-white p-6 rounded-lg shadow-md w-full lg:w-1/3">
         <h2 className="text-xl font-semibold mb-4 text-center">سلة المشتريات</h2>
         <div className="space-y-4 max-h-[400px] overflow-y-auto">
-          {cartItems.map((item) => (
-            <div key={item.id} className="flex gap-4 border-b pb-3">
+          {cartItems.map((item, index) => (
+            <div key={item.id && index} className="flex gap-4 border-b pb-3">
               <img
                 src={item.Image}
                 alt={item.name}
@@ -81,6 +78,7 @@ const Checkout = () => {
                   EGP {item.price * item.quantity}
                 </p>
                 <p>{item.quantity}</p>
+                <p>{item.selectedSize}</p>
               </div>
             </div>
           ))}

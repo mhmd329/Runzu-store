@@ -1,5 +1,5 @@
-import pantalon from "../assets/pant1.jpg"
-import tshirt from "../assets/tshirt1.jpg"
+import pantalon from "../assets/pant1.jpg";
+import tshirt from "../assets/tshirt1.jpg";
 
 export const allProducts = [
   {
@@ -8,7 +8,8 @@ export const allProducts = [
     category: "tshirts",
     price: 550,
     Image: tshirt,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "available"
   },
   {
     id: 2,
@@ -16,7 +17,8 @@ export const allProducts = [
     category: "pants",
     price: 600,
     Image: pantalon,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "not available"  // غير متوفر
   },
   {
     id: 3,
@@ -24,7 +26,8 @@ export const allProducts = [
     category: "pants",
     price: 600,
     Image: pantalon,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "available"
   },
   {
     id: 4,
@@ -32,7 +35,8 @@ export const allProducts = [
     category: "pants",
     price: 600,
     Image: pantalon,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "available"
   },
   {
     id: 5,
@@ -40,7 +44,8 @@ export const allProducts = [
     category: "pants",
     price: 600,
     Image: pantalon,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "available"
   },
   {
     id: 6,
@@ -48,7 +53,8 @@ export const allProducts = [
     category: "pants",
     price: 600,
     Image: pantalon,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "available"
   },
   {
     id: 7,
@@ -56,7 +62,8 @@ export const allProducts = [
     category: "tshirts",
     price: 500,
     Image: tshirt,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "not available"  // غير متوفر
   },
   {
     id: 8,
@@ -64,7 +71,8 @@ export const allProducts = [
     category: "tshirts",
     price: 500,
     Image: tshirt,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "available"
   },
   {
     id: 9,
@@ -72,7 +80,8 @@ export const allProducts = [
     category: "tshirts",
     price: 500,
     Image: tshirt,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "available"
   },
   {
     id: 10,
@@ -80,6 +89,7 @@ export const allProducts = [
     category: "tshirts",
     price: 500,
     Image: tshirt,
-    sizes: ["M", "L", "XL"]
+    sizes: ["M", "L", "XL"],
+    status: "available"
   },
 ];
