@@ -19,7 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/ze/orders" element={<AdminOrders />} />
+            <Route path="/zeko/orders" element={<AdminOrders />} />
             <Route path="/product/:id" element={<ProductDetails/>} />
           </Routes>
         </main>
