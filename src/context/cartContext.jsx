@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { allProducts } from "../components/data/products";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useCreateOrder} from '../components/hooks/useCreateOrder'; // استيراد الهوك
+import { useCreateOrder } from '../components/hooks/useCreateOrder'; // استيراد الهوك
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const Context = createContext();
@@ -11,7 +11,7 @@ export const ContextProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [products] = useState(allProducts);
   const [cartItems, setCartItems] = useState(
-    JSON.parse(localStorage.getItem("cartItems")) || []
+    JSON.parse(sessionStorage.getItem("cartItems")) || []
   );
   const [orders, setOrders] = useState(); // لإدارة الطلبات
   const { mutate: createOrder, isLoading, isError, error, isSuccess } = useCreateOrder();
@@ -41,17 +41,17 @@ export const ContextProvider = ({ children }) => {
   // دالة لإرسال الطلب
   const BuyCart = async (e, navigate) => {
     e.preventDefault();
-  
+
     if (cartItems.length === 0) {
       toast.error("السلة فارغة");
       return;
     }
-  
+
     if (!customerData.name || !customerData.address || !customerData.phone) {
       toast.info("من فضلك أدخل جميع البيانات");
       return;
     }
-  
+
     const orderData = {
       customer: customerData,
       items: cartItems,
@@ -59,19 +59,19 @@ export const ContextProvider = ({ children }) => {
       date: new Date().toLocaleString(),
     };
     // إرسال الطلب وانتظار النتيجة
-   // استخدام mutate بدلاً من mutateAsync
-  createOrder(orderData, {
-    onSuccess: () => {
-      toast.success("تم إرسال الطلب بنجاح!");
-      navigate('/');
-    },
-    onError: (error) => {
-      toast.error("حدث خطأ أثناء إرسال الطلب");
-      console.error("Error while creating order:", error);
-    },
-  });
-};
-  
+    // استخدام mutate بدلاً من mutateAsync
+    createOrder(orderData, {
+      onSuccess: () => {
+        toast.success("تم إرسال الطلب بنجاح!");
+        navigate('/');
+      },
+      onError: (error) => {
+        toast.error("حدث خطأ أثناء إرسال الطلب");
+        console.error("Error while creating order:", error);
+      },
+    });
+  };
+
   // دالة لحذف الطلب
   const removeOrder = (index) => {
     // حذف الطلب من الـ state
@@ -81,6 +81,7 @@ export const ContextProvider = ({ children }) => {
     // تحديث الـ localStorage
   };
   const handleAddToCart = (product) => {
+    openCart()
     setCartItems((prevItems) => {
 
       const existingItem = prevItems.find(
@@ -128,10 +129,10 @@ export const ContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-   const totalQuantity = cartItems.reduce(
+  const totalQuantity = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
   );

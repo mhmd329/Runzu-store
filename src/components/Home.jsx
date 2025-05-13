@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaTshirt } from "react-icons/fa";
 import { PiPantsLight } from "react-icons/pi";
-import Pants from "./Pants";
-import Tshirt from "./Tshirt";
+import Pants from "./layout/Pants";
+import Tshirt from "./layout/Tshirt";
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -40,8 +40,8 @@ const Home = () => {
       <div className="mt-8">
         <div className="text-center">
           <p>m:55,65</p>
-          <p>l:55,65</p>
-          <p>xl:55,65</p>
+          <p>l:65,75</p>
+          <p>xl:75,90</p>
         </div>
         {selectedCategory === "pants" && <Pants />}
         {selectedCategory === "tshirts" && <Tshirt />}

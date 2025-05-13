@@ -49,13 +49,7 @@ const AdminOrders = () => {
                                     <ul className="divide-y">
                                         {order.items.map((item, i) => (
                                             <li key={i} className="py-3 flex items-start gap-4">
-                                                {item.Image && (
-                                                    <img
-                                                        src={item.Image}
-                                                        alt={item.name}
-                                                        className="w-16 h-16 object-cover rounded border"
-                                                    />
-                                                )}
+                                 
                                                 <div className="flex-1">
                                                     <p className="font-medium">{item.name}</p>
                                                     <div className="flex gap-4 text-sm text-gray-600 mt-1">

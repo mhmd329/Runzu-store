@@ -18,7 +18,7 @@ const Footer = () => {
 
           <div className="flex space-x-4">
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/photo/?fbid=122102078324786178&set=a.122097126650786178"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -27,7 +27,7 @@ const Footer = () => {
               <FaFacebook size={30} />
             </a>
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/runzu_store/?igsh=ZW5mMGVmbHh3eWdo#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"

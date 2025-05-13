@@ -1,13 +1,14 @@
 
 import './App.css'
 import AdminOrders from './components/AdminOrders/AdminOrders';
-import Checkout from './components/CheckOut';
+import Checkout from './components/checkout/CheckOut';
 import Footer from './components/Footer'
 import Home from './components/Home'
 import Nav from './components/Nav'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProductDetails from './components/proDetails/ProductDetails';
 function App() {
   return (
     <Router>
@@ -18,8 +19,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/admin/orders" element={<AdminOrders />} />
-
+            <Route path="/zeko/orders" element={<AdminOrders />} />
+            <Route path="/product/:id" element={<ProductDetails/>} />
           </Routes>
         </main>
 

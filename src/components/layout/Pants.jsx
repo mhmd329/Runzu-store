@@ -1,24 +1,31 @@
 import React, { useContext } from "react";
-import { Context } from "../context/cartContext";
+import { Context } from "../../context/cartContext";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-const Tshirt = () => {
+import { useNavigate } from "react-router-dom";
+
+const Pants = () => {
   const { products, handleAddToCart, selectedSizes, handleSizeChange } = useContext(Context); // استخدم القيم من الـ Context
-  const FilteredProducts = products.filter((product) => product.category === "tshirts")
-  
+  const FilteredProducts = products.filter(
+    (product) => product.category === "pants"
+  );
+  const navigate = useNavigate()
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-4">
       {FilteredProducts.map((product, index) => (
         <motion.div
           key={product.id}
+
           className="bg-white flex flex-col shadow-md rounded-xl p-4 items-center text-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2, delay: index * 0.1 }}
         >
           <img
-            className="w-28 h-28 object-cover rounded-md mb-2"
+            onClick={() => navigate(`/product/${product.id}`)}
+
+            className="w-28 h-28 object-cover cursor-pointer rounded-md mb-2"
             src={product.Image}
             alt={product.name}
           />
@@ -57,14 +64,14 @@ const Tshirt = () => {
             {product.status !== "available"
               ? "not aviallible"
               : !selectedSizes[product.id]
-              ? " choose you size"
-              : "Add to Cart"}
+                ? " choose you size"
+                : "Add to Cart"}
           </button>
 
         </motion.div>
       ))}
     </div>
-  )
+  );
 };
 
-export default Tshirt;
+export default Pants;

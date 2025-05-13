@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Context } from '../context/cartContext';
+import { Context } from '../../context/cartContext';
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
@@ -54,7 +54,7 @@ const Checkout = () => {
           </div>
           <button 
             type="submit" 
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+            className="w-full bg-gray-600 text-white py-2 px-4 rounded-lg cursor-pointer hover:bg-gray-700"
           >
             تأكيد الطلب
           </button>
