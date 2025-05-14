@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import { Context } from "../../context/cartContext";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Tshirt = () => {
   const { products, handleAddToCart, selectedSizes, handleSizeChange } =
     useContext(Context);
 
-  const FilteredProducts = products.filter(
-    (product) => product.category === "tshirts"
-  );
+    const FilteredProducts = products?.filter(
+      (product) => product.category === "tshirts"
+    ) || [];
+  const navigate = useNavigate()
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-4">
@@ -23,8 +25,9 @@ const Tshirt = () => {
             transition={{ duration: 0.2, delay: index * 0.1 }}
           >
             <img
+              onClick={() => navigate(`/product/${product.id}`)}
               className="w-28 h-28 object-cover rounded-md mb-2"
-              src={product.Image}
+              src={`https://back-runzu-production.up.railway.app${product.Image}`}
               alt={product.name}
             />
             <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
@@ -71,7 +74,7 @@ const Tshirt = () => {
           </motion.div>
         ))
       ) : (
-        
+
         <p className="text-center text-gray-500">T-shirt not available</p>
       )}
     </div>

@@ -48,7 +48,7 @@ const Cart = () => {
             <div className="flex items-center justify-between p-4 border-b">
               <h2 className="text-lg font-semibold">Your Cart</h2>
               <button
-                className="text-red-600 hover:text-red-800 text-sm"
+                className="text-red-600 cursor-pointer hover:text-red-800 text-sm"
                 onClick={closeCart}
               >
                 ✕

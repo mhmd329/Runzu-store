@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 const Pants = () => {
   const { products, handleAddToCart, selectedSizes, handleSizeChange } = useContext(Context); // استخدم القيم من الـ Context
-  const FilteredProducts = products.filter(
+  const FilteredProducts = products?.filter(
     (product) => product.category === "pants"
-  );
+  ) || [];
+  
   const navigate = useNavigate()
 
   return (
@@ -26,7 +27,7 @@ const Pants = () => {
             onClick={() => navigate(`/product/${product.id}`)}
 
             className="w-28 h-28 object-cover cursor-pointer rounded-md mb-2"
-            src={product.Image}
+            src={`https://back-runzu-production.up.railway.app${product.Image}`}
             alt={product.name}
           />
           <h3 className="text-lg font-semibold mb-1">{product.name}</h3>

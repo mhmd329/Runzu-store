@@ -1,21 +1,18 @@
 import React, { createContext, useEffect, useState } from "react";
-import { allProducts } from "../components/data/products";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCreateOrder } from '../components/hooks/useCreateOrder'; // استيراد الهوك
-
+import { useGetProducts } from "../components/hooks/useProducts";
 // eslint-disable-next-line react-refresh/only-export-components
 export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [products] = useState(allProducts);
   const [cartItems, setCartItems] = useState(
     JSON.parse(sessionStorage.getItem("cartItems")) || []
   );
-  const [orders, setOrders] = useState(); // لإدارة الطلبات
   const { mutate: createOrder, isLoading, isError, error, isSuccess } = useCreateOrder();
-
+  const { data: allProducts } = useGetProducts();
   // بيانات العميل من الفورم
   const [customerData, setCustomerData] = useState({
     name: '',
@@ -43,43 +40,36 @@ export const ContextProvider = ({ children }) => {
     e.preventDefault();
 
     if (cartItems.length === 0) {
-      toast.error("السلة فارغة");
+      toast.error(" cart empty");
       return;
     }
 
     if (!customerData.name || !customerData.address || !customerData.phone) {
-      toast.info("من فضلك أدخل جميع البيانات");
+      toast.info("fill inputs info");
       return;
     }
 
     const orderData = {
       customer: customerData,
       items: cartItems,
-      totalAmount: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+      totalAmount: totalPrice,
       date: new Date().toLocaleString(),
     };
     // إرسال الطلب وانتظار النتيجة
     // استخدام mutate بدلاً من mutateAsync
     createOrder(orderData, {
       onSuccess: () => {
-        toast.success("تم إرسال الطلب بنجاح!");
+        toast.success("order success!");
         navigate('/');
       },
       onError: (error) => {
-        toast.error("حدث خطأ أثناء إرسال الطلب");
+        toast.error("server error");
         console.error("Error while creating order:", error);
       },
     });
   };
 
-  // دالة لحذف الطلب
-  const removeOrder = (index) => {
-    // حذف الطلب من الـ state
-    const updatedOrders = orders.filter((_, i) => i !== index);
-    setOrders(updatedOrders);  // تحديث الـ state
 
-    // تحديث الـ localStorage
-  };
   const handleAddToCart = (product) => {
     openCart()
     setCartItems((prevItems) => {
@@ -144,7 +134,7 @@ export const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        products,
+        products: allProducts || [], // ✅ نحط default []
         cartItems,
         handleAddToCart,
         handleRemoveFromCart,
@@ -154,15 +144,14 @@ export const ContextProvider = ({ children }) => {
         isOpen,
         openCart,
         closeCart,
-        orders,
         customerData,
-        removeOrder,
         selectedSizes,
         handleSizeChange,
         isLoading,
         isError,
         error,
         isSuccess,
+       
         handleCustomerInput, // مهم لإرسال البيانات من الفورم
       }}
     >

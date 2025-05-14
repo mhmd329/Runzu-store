@@ -5,49 +5,65 @@ import Pants from "./layout/Pants";
 import Tshirt from "./layout/Tshirt";
 
 const Home = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("pants");
 
-  const handleShowPants = () => {
-    setSelectedCategory("pants");
-  };
-
-  const handleShowTshirts = () => {
-    setSelectedCategory("tshirts");
-  };
+  const sizeRanges = [
+    { label: "M", min: 55, max: 65 },
+    { label: "L", min: 65, max: 75 },
+    { label: "XL", min: 75, max: 90 },
+  ];
 
   return (
     <>
-      <div className="flex justify-center items-center mt-8 space-x-8 bg-gray-200 py-4">
+      {/* Toggle Buttons */}
+      <div className="flex justify-center items-center mt-8 space-x-8 py-4">
         <button
-          onClick={handleShowPants}
-          className={`flex flex-col items-center cursor-pointer py-4 px-6 rounded-xl shadow-lg transition duration-300 
-      ${selectedCategory === "pants" ? "bg-gray-700" : "bg-gray-500 hover:bg-gray-700"} text-white`}
+          onClick={() => setSelectedCategory("pants")}
+          className={`flex flex-col items-center py-4 px-6 rounded-xl shadow-lg transition duration-300
+            ${selectedCategory === "pants"
+              ? "bg-gray-700 text-white"
+              : "bg-gray-500 text-white hover:bg-gray-700"
+            }`}
         >
           <PiPantsLight size={40} />
           <span className="mt-2 text-sm">Pants</span>
         </button>
 
         <button
-          onClick={handleShowTshirts}
-          className={`flex flex-col items-center cursor-pointer py-4 px-6 rounded-xl shadow-lg transition duration-300 
-      ${selectedCategory === "tshirts" ? "bg-gray-700" : "bg-gray-500 hover:bg-gray-700"} text-white`}
+          onClick={() => setSelectedCategory("tshirts")}
+          className={`flex flex-col items-center py-4 px-6 rounded-xl shadow-lg transition duration-300
+            ${selectedCategory === "tshirts"
+              ? "bg-gray-700 text-white"
+              : "bg-gray-500 text-white hover:bg-gray-700"
+            }`}
         >
           <FaTshirt size={40} />
           <span className="mt-2 text-sm">T-Shirt</span>
         </button>
       </div>
 
-      <div className="mt-8">
-        <div className="text-center">
-          <p>m:55,65</p>
-          <p>l:65,75</p>
-          <p>xl:75,90</p>
+      {/* Size Guide */}
+      <div className="mt-8 max-w-md mx-auto">
+        <h2 className="text-center text-lg font-semibold mb-4">Size Guide (cm)</h2>
+        <div className="grid grid-cols-3 gap-4 text-center">
+          {sizeRanges.map(({ label, min, max }) => (
+            <div
+              key={label}
+              className="p-2 border rounded-lg bg-white shadow-sm"
+            >
+              <p className="font-medium">{label}</p>
+              <p className="text-sm text-gray-600">{min}–{max}</p>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* Product List */}
+      <div className="mt-8">
         {selectedCategory === "pants" && <Pants />}
         {selectedCategory === "tshirts" && <Tshirt />}
       </div>
     </>
-
   );
 };
 
