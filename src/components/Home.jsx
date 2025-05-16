@@ -3,7 +3,6 @@ import { FaTshirt } from "react-icons/fa";
 import { PiPantsLight } from "react-icons/pi";
 import Pants from "./layout/Pants";
 import Tshirt from "./layout/Tshirt";
-
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("pants");
 
@@ -11,12 +10,21 @@ const Home = () => {
     { label: "M", min: 55, max: 65 },
     { label: "L", min: 65, max: 75 },
     { label: "XL", min: 75, max: 90 },
+    { label: "XXL", min: 90, max: ">>" },
   ];
 
   return (
     <>
-      {/* Toggle Buttons */}
-      <div className="flex justify-center items-center mt-8 space-x-8 py-4">
+      <div
+        className="bg-cover bg-center h-[300px]"
+        style={{ backgroundImage: "url('/logo.jpg')" }}
+      >
+        {/* محتوى داخل الصورة هنا لو تحب */}
+      </div>
+      <div
+        className="flex justify-center items-center mt-8 space-x-8 py-4 bg-cover bg-center"
+      >
+
         <button
           onClick={() => setSelectedCategory("pants")}
           className={`flex flex-col items-center py-4 px-6 rounded-xl shadow-lg transition duration-300
@@ -45,7 +53,7 @@ const Home = () => {
       {/* Size Guide */}
       <div className="mt-8 max-w-md mx-auto">
         <h2 className="text-center text-lg font-semibold mb-4">Size Guide (cm)</h2>
-        <div className="grid grid-cols-3 gap-4 text-center">
+        <div className="grid grid-cols-4 gap-4 text-center">
           {sizeRanges.map(({ label, min, max }) => (
             <div
               key={label}

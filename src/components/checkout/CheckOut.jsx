@@ -14,12 +14,12 @@ const Checkout = () => {
         <form onSubmit={(e) => BuyCart(e, navigate)}>
 
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium mb-2">الاسم</label>
-            <input 
-              id="name" 
-              name="name" 
-              type="text" 
-              placeholder="ادخل اسمك" 
+            <label htmlFor="name" className="block text-sm font-medium mb-2">name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="your name"
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
               onChange={handleCustomerInput}
               value={customerData.name}  // ربط البيانات مع الـ state
@@ -27,12 +27,12 @@ const Checkout = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="address" className="block text-sm font-medium mb-2">العنوان</label>
-            <input 
-              id="address" 
-              name="address" 
-              type="text" 
-              placeholder="ادخل عنوانك" 
+            <label htmlFor="address" className="block text-sm font-medium mb-2">address</label>
+            <input
+              id="address"
+              name="address"
+              type="text"
+              placeholder="your address "
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
               onChange={handleCustomerInput}
               value={customerData.address}  // ربط البيانات مع الـ state
@@ -40,35 +40,35 @@ const Checkout = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="phone" className="block text-sm font-medium mb-2">رقم الهاتف</label>
-            <input 
-              id="phone" 
-              name="phone" 
-              type="text" 
-              placeholder="ادخل رقم هاتفك" 
+            <label htmlFor="phone" className="block text-sm font-medium mb-2">phone number </label>
+            <input
+              id="phone"
+              name="phone"
+              type="text"
+              placeholder="your number"
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
               onChange={handleCustomerInput}
               value={customerData.phone}  // ربط البيانات مع الـ state
               required
             />
           </div>
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="w-full bg-gray-600 text-white py-2 px-4 rounded-lg cursor-pointer hover:bg-gray-700"
           >
-            تأكيد الطلب
+            Order Now
           </button>
         </form>
       </div>
 
       {/* Cart Summary */}
       <div className="bg-white p-6 rounded-lg shadow-md w-full lg:w-1/3">
-        <h2 className="text-xl font-semibold mb-4 text-center">سلة المشتريات</h2>
+        <h2 className="text-xl font-semibold mb-4 text-center">your cart products</h2>
         <div className="space-y-4 max-h-[400px] overflow-y-auto">
           {cartItems.map((item, index) => (
             <div key={item.id && index} className="flex gap-4 border-b pb-3">
               <img
-                src={item.Image}
+                src={`https://back-runzu-production.up.railway.app${item.Image}`}
                 alt={item.name}
                 className="w-16 h-16 rounded-md object-cover"
               />
@@ -84,7 +84,7 @@ const Checkout = () => {
           ))}
         </div>
         <div className="mt-4 text-right font-semibold">
-          الإجمالي: EGP {totalPrice}
+          Total: EGP {totalPrice}
         </div>
       </div>
     </div>

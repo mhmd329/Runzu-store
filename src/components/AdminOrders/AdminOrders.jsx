@@ -24,6 +24,7 @@ const AdminOrders = () => {
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
             <h1 className="text-3xl font-bold mb-6 text-center">قائمة الطلبات</h1>
+           
 
             {orders?.length === 0 ? (
                 <p className="text-center text-gray-500">لا توجد طلبات حالياً.</p>
@@ -49,8 +50,13 @@ const AdminOrders = () => {
                                     <ul className="divide-y">
                                         {order.items.map((item, i) => (
                                             <li key={i} className="py-3 flex items-start gap-4">
-                                 
+
                                                 <div className="flex-1">
+                                                    <img
+                                                        src={`https://back-runzu-production.up.railway.app${item.Image}`}
+                                                        alt={item.name}
+                                                        className="w-16 h-16 rounded-md object-cover"
+                                                    />
                                                     <p className="font-medium">{item.name}</p>
                                                     <div className="flex gap-4 text-sm text-gray-600 mt-1">
                                                         <p>المقاس: {item.selectedSize}</p>

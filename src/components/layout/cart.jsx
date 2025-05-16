@@ -64,7 +64,7 @@ const Cart = () => {
                 >
                   {/* صورة المنتج */}
                   <img
-                    src={item.Image}
+                    src={`https://back-runzu-production.up.railway.app${item.Image}`}
                     alt={item.name}
                     className="w-16 h-16 rounded-md object-cover"
                   />

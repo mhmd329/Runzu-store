@@ -9,17 +9,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductDetails from './components/proDetails/ProductDetails';
+import AdminDashboard from './components/AdminOrders/AdminDashboard';
 function App() {
   return (
     <Router>
-      <div className="bg-gray-100 min-h-screen flex flex-col">
+      <div className="bg-gray-100 min-h-screen flex flex-col"
+      >
         <Nav />
 
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/zeko/orders" element={<AdminOrders />} />
+            <Route path="/zeko" element={<AdminDashboard />} />
             <Route path="/product/:id" element={<ProductDetails/>} />
           </Routes>
         </main>

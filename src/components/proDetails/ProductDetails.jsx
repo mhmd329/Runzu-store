@@ -20,8 +20,11 @@ const ProductDetails = () => {
   /* الصورة الرئيسيّة (تُضبط على أوّل صورة في الـ gallery) */
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [mainImage, setMainImage] = useState(
-    product.gallery?.[0] || product.Image
+    product.gallery?.[0] ? `https://back-runzu-production.up.railway.app${product.gallery[0]}` : `https://back-runzu-production.up.railway.app${product.Image}`
   );
+
+  console.log("gallery:", product.gallery);
+  console.log("main image:", mainImage);
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -45,13 +48,14 @@ const ProductDetails = () => {
           {product.gallery.map((img, i) => (
             <img
               key={i}
-              src={img}
+              src={`https://back-runzu-production.up.railway.app${img}`}
               alt={`thumb-${i}`}
-              onClick={() => setMainImage(img)}
+              onClick={() => setMainImage(`https://back-runzu-production.up.railway.app${img}`)}
               className={`w-20 h-20 md:w-24 md:h-24 object-cover rounded-md cursor-pointer border-2
-                ${mainImage === img ? "border-gray-700" : "border-transparent"}
-              `}
+  ${mainImage === `https://back-runzu-production.up.railway.app${img}` ? "border-gray-700" : "border-transparent"}
+           `}
             />
+
           ))}
         </div>
       </div>
@@ -85,9 +89,8 @@ const ProductDetails = () => {
 
         {/* حالة التوفّر */}
         <p
-          className={`font-semibold ${
-            product.status === "available" ? "text-green-600" : "text-red-600"
-          }`}
+          className={`font-semibold ${product.status === "available" ? "text-green-600" : "text-red-600"
+            }`}
         >
           {product.status}
         </p>
@@ -105,17 +108,16 @@ const ProductDetails = () => {
             product.status !== "available" || !selectedSizes[product.id]
           }
           className={`py-2 px-4 rounded-lg text-white transition cursor-pointer
-            ${
-              product.status === "available" && selectedSizes[product.id]
-                ? "bg-gray-700 hover:bg-gray-800"
-                : "bg-gray-400 cursor-not-allowed"
+            ${product.status === "available" && selectedSizes[product.id]
+              ? "bg-gray-700 hover:bg-gray-800"
+              : "bg-gray-400 cursor-not-allowed"
             }`}
         >
           {product.status !== "available"
             ? "not available"
             : !selectedSizes[product.id]
-            ? "choose size first"
-            : "Add to Cart"}
+              ? "choose size first"
+              : "Add to Cart"}
         </button>
       </div>
     </div>

@@ -9,7 +9,7 @@ const Pants = () => {
   const FilteredProducts = products?.filter(
     (product) => product.category === "pants"
   ) || [];
-  
+
   const navigate = useNavigate()
 
   return (
@@ -25,7 +25,6 @@ const Pants = () => {
         >
           <img
             onClick={() => navigate(`/product/${product.id}`)}
-
             className="w-28 h-28 object-cover cursor-pointer rounded-md mb-2"
             src={`https://back-runzu-production.up.railway.app${product.Image}`}
             alt={product.name}
