@@ -23,8 +23,6 @@ const ProductDetails = () => {
     product.gallery?.[0] ? `https://back-runzu-production.up.railway.app${product.gallery[0]}` : `https://back-runzu-production.up.railway.app${product.Image}`
   );
 
-  console.log("gallery:", product.gallery);
-  console.log("main image:", mainImage);
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -34,6 +32,7 @@ const ProductDetails = () => {
       <div className="flex flex-col md:flex-row gap-6">
         {/* الصورة الكبيرة مع أنيميشن لطيفة */}
         <motion.img
+          loading="lazy"
           key={mainImage} // ليتغير الـ motion عند تبديل الصورة
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -47,6 +46,7 @@ const ProductDetails = () => {
         <div className="flex md:flex-col gap-3 md:gap-4 overflow-x-auto md:overflow-y-auto">
           {product.gallery.map((img, i) => (
             <img
+            loading="lazy"
               key={i}
               src={`https://back-runzu-production.up.railway.app${img}`}
               alt={`thumb-${i}`}

@@ -10,7 +10,8 @@ const Nav = () => {
         <nav className="relative top-0 left-0 right-0 bg-gray-200 shadow-md">
             <div className="flex justify-between items-center px-4 py-4">
                 <div className="flex items-center gap-2">
-                    <img className="h-10 w-10 rounded-full object-cover" src={logo} alt="Runzu logo" />
+                    <img className="h-10 w-10 rounded-full object-cover" src={logo} alt="Runzu logo"   loading="lazy"
+                    />
                     <span className="text-xl font-bold text-gray-800">Runzu</span>
                 </div>
 

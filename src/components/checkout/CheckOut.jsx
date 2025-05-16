@@ -68,6 +68,7 @@ const Checkout = () => {
           {cartItems.map((item, index) => (
             <div key={item.id && index} className="flex gap-4 border-b pb-3">
               <img
+                loading="lazy"
                 src={`https://back-runzu-production.up.railway.app${item.Image}`}
                 alt={item.name}
                 className="w-16 h-16 rounded-md object-cover"

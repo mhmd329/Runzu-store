@@ -29,9 +29,7 @@ export const useDeleteOrder = () => {
 export const useCreateOrder = () => {
     return useMutation({
         mutationFn: async (orderData) => {
-            console.log("🔄 Sending order:", orderData);
-            console.log("Order data structure is valid:", orderData.customer && orderData.items.length > 0 && orderData.totalAmount > 0);
-
+            
             const response = await fetch("https://back-runzu-production.up.railway.app/orders", {
                 method: "POST",
                 headers: {
@@ -46,7 +44,6 @@ export const useCreateOrder = () => {
             }
 
             const data = await response.json();
-            console.log("✅ Order saved:", data); // طباعة الرد من السيرفر
             return data;
         },
         onSuccess: (data) => {
@@ -70,7 +67,6 @@ export const useGetOrders = () => {
             }
 
             const data = await response.json();
-            console.log("✅ Orders fetched:", data);
             return data;
         },
         refetchOnWindowFocus: false, // لمنع إعادة الجلب عند تركيز النافذة

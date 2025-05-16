@@ -25,6 +25,7 @@ const Tshirt = () => {
             transition={{ duration: 0.2, delay: index * 0.1 }}
           >
             <img
+              loading="lazy"
               onClick={() => navigate(`/product/${product.id}`)}
               className="w-28 h-28 object-cover rounded-md mb-2"
               src={`https://back-runzu-production.up.railway.app${product.Image}`}

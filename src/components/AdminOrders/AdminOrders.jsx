@@ -24,7 +24,7 @@ const AdminOrders = () => {
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
             <h1 className="text-3xl font-bold mb-6 text-center">قائمة الطلبات</h1>
-           
+
 
             {orders?.length === 0 ? (
                 <p className="text-center text-gray-500">لا توجد طلبات حالياً.</p>
@@ -53,6 +53,7 @@ const AdminOrders = () => {
 
                                                 <div className="flex-1">
                                                     <img
+                                                        loading="lazy"
                                                         src={`https://back-runzu-production.up.railway.app${item.Image}`}
                                                         alt={item.name}
                                                         className="w-16 h-16 rounded-md object-cover"

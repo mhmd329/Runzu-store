@@ -52,6 +52,7 @@ const AdminProducts = () => {
                             <tr key={product.id} className="hover:bg-gray-50">
                                 <td className="py-2 px-4 border-b">
                                     <img
+                                        loading="lazy"
                                         src={`https://back-runzu-production.up.railway.app${product?.gallery?.[0] || product.Image}`}
                                         alt={product.name}
                                         className="w-16 h-16 object-cover rounded"
