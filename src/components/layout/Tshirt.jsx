@@ -8,13 +8,13 @@ const Tshirt = () => {
   const { products, handleAddToCart, selectedSizes, handleSizeChange } =
     useContext(Context);
 
-    const FilteredProducts = products?.filter(
-      (product) => product.category === "tshirts"
-    ) || [];
+  const FilteredProducts = products?.filter(
+    (product) => product.category === "tshirts"
+  ) || [];
   const navigate = useNavigate()
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-4">
+    <div className="grid bg-gray-100 grid-cols-2 md:grid-cols-3 gap-6 p-4">
       {FilteredProducts.length > 0 ? (
         FilteredProducts.map((product, index) => (
           <motion.div
@@ -68,14 +68,15 @@ const Tshirt = () => {
               {product.status !== "available"
                 ? "not available"
                 : !selectedSizes[product.id]
-                  ? "choose your size"
+                  ? "choose size first!"
                   : "Add to Cart"}
             </button>
           </motion.div>
         ))
       ) : (
-
-        <p className="text-center text-gray-500">T-shirt not available</p>
+        <div className="flex justify-center col-span-full">
+          <h1 className="text-center text-gray-500">T-shirt comming soon</h1>
+        </div>
       )}
     </div>
   );

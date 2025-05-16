@@ -18,7 +18,7 @@ const Footer = () => {
 
           <div className="flex space-x-4">
             <a
-              href="https://www.facebook.com/photo/?fbid=122102078324786178&set=a.122097126650786178"
+              href="https://www.facebook.com/profile.php?id=61573585349880&mibextid=wwXIfr&rdid=uYcpzBbSN4KbyNgH&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1HNXAGRFqn%2F%3Fmibextid%3DwwXIfr#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -46,9 +46,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="text-center">
-            <span className="text-2xl font-bold text-gray-700">Runzu</span>
-          </div>
+         
         </div>
       </div>
     </footer>

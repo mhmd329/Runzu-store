@@ -17,7 +17,7 @@ const Nav = () => {
 
 
                 <div>
-                    <Link to="/" className="text-blue-500 hover:underline flex items-center gap-1">
+                    <Link to="/" className="text-gray-800 hover:underline flex items-center gap-1">
                         <AiFillHome className="text-xl" />
                         Home
                     </Link>

@@ -8,13 +8,13 @@ const AdminDashboard = () => {
     return (
         <div className="flex">
             {/* Sidebar */}
-            <aside className="w-64 bg-gray-800 text-white p-6 space-y-4 fixed h-full">
+            <aside className="w-64 bg-gray-200 text-gray-800 p-6 space-y-4 fixed h-full">
                 <h2 className="text-2xl font-bold mb-6">Admin Panel</h2>
 
                 <button
                     onClick={() => setActiveTab("products")}
                     className={`w-full text-left py-2 px-4 rounded-lg transition 
-            ${activeTab === "products" ? "bg-gray-700" : "hover:bg-gray-700"}
+            ${activeTab === "products" ? "bg-gray-700 text-white" : "hover:bg-gray-700"}
           `}
                 >
                     📦 Products
@@ -23,7 +23,7 @@ const AdminDashboard = () => {
                 <button
                     onClick={() => setActiveTab("orders")}
                     className={`w-full text-left py-2 px-4 rounded-lg transition 
-            ${activeTab === "orders" ? "bg-gray-700" : "hover:bg-gray-700"}
+            ${activeTab === "orders" ? "bg-gray-700 text-white" : "hover:bg-gray-700"}
           `}
                 >
                     🧾 Orders

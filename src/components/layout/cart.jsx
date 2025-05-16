@@ -12,7 +12,7 @@ const Cart = () => {
     <>
       {/* Cart Button */}
       <button
-        className="relative cursor-pointer w-8 h-8 rounded-full border border-blue-500 text-blue-500 flex items-center justify-center"
+        className="relative cursor-pointer w-12 h-12 rounded-full border border-gray-800 text-gray-800 flex items-center justify-center"
         onClick={openCart}
       >
         {/* Cart Icon */}
@@ -34,6 +34,7 @@ const Cart = () => {
       {/* Backdrop + Slide Cart */}
       {isOpen && (
         <>
+        
           {/* Backdrop */}
           <div
             className="fixed inset-0 bg-black/50 z-40"
