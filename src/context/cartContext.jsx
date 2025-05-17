@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCreateOrder } from '../components/hooks/useCreateOrder'; // استيراد الهوك
 import { useGetProducts } from "../components/hooks/useProducts";
@@ -35,7 +35,7 @@ export const ContextProvider = ({ children }) => {
   const closeCart = () => {
     setIsOpen(false);
   };
-  // دالة لإرسال الطلب
+
   const BuyCart = async (e, navigate) => {
     e.preventDefault();
 
@@ -55,18 +55,18 @@ export const ContextProvider = ({ children }) => {
       totalAmount: totalPrice,
       date: new Date().toLocaleString(),
     };
-    // إرسال الطلب وانتظار النتيجة
-    // استخدام mutate بدلاً من mutateAsync
-    createOrder(orderData, {
-      onSuccess: () => {
-        toast.success("order success!");
-        navigate('/');
-      },
-      onError: (error) => {
-        toast.error("server error");
-        console.error("Error while creating order:", error);
-      },
-    });
+
+    createOrder(orderData,
+      {
+        onSuccess: () => {
+          toast.success("order success ✅");
+          navigate('/');
+        },
+        onError: (error) => {
+          toast.error("server error");
+          console.error("Error while creating order:", error);
+        },
+      });
   };
 
 
@@ -134,7 +134,7 @@ export const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        products: allProducts || [], // ✅ نحط default []
+        products: allProducts || [],
         cartItems,
         handleAddToCart,
         handleRemoveFromCart,
@@ -151,8 +151,7 @@ export const ContextProvider = ({ children }) => {
         isError,
         error,
         isSuccess,
-       
-        handleCustomerInput, // مهم لإرسال البيانات من الفورم
+        handleCustomerInput,
       }}
     >
 

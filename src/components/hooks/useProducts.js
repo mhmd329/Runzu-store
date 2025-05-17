@@ -9,7 +9,6 @@ export const useGetProducts = () => {
                 throw new Error("خطأ في جلب الطلبات");
             }
             const data = await response.json();
-            console.log("✅ products fetched:", data);
             return data;
         },
         refetchOnWindowFocus: false, // لمنع إعادة الجلب عند تركيز النافذة

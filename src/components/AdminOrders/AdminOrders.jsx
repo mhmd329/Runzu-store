@@ -11,7 +11,7 @@ const AdminOrders = () => {
     const handleDeleteOrder = (orderId) => {
         if (window.confirm('هل أنت متأكد من حذف هذا الطلب؟')) {
             deleteOrder(orderId, {
-                onSuccess: () => toast.success('تم حذف الطلب بنجاح'),
+                onSuccess: () => toast.success('تم حذف الطلب بنجاح ✅'),
                 onError: () => toast.error('فشل في حذف الطلب')
             });
         }
@@ -23,7 +23,6 @@ const AdminOrders = () => {
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
-            <h1 className="text-3xl font-bold mb-6 text-center">قائمة الطلبات</h1>
 
 
             {orders?.length === 0 ? (

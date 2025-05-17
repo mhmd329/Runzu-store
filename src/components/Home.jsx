@@ -16,10 +16,10 @@ const Home = () => {
   return (
     <>
       <div
-        className="bg-cover bg-center h-[300px]"
+        className="bg-cover bg-center h-[300px] flex items-center justify-center text-white text-center px-4"
         style={{ backgroundImage: "url('/logo.jpg')" }}
       >
-        {/* محتوى داخل الصورة هنا لو تحب */}
+     
       </div>
       <div
         className="flex justify-center items-center mt-8 space-x-8 py-4 bg-cover bg-center"

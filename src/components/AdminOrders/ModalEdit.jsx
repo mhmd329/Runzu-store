@@ -39,7 +39,7 @@ const ModalEdit = ({ Product, closeModal }) => {
         });
         try {
             await mutate({ ProID: Product.id, formData });
-            toast("product updated")
+            toast("your product updated ✅")
             closeModal()
         } catch (error) {
             console.error("Upload error:", error);

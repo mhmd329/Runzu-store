@@ -30,7 +30,6 @@ const ModalAdd = ({ closeModal }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const formData = new FormData();
         formData.append("name", name);
         formData.append("category", category);
@@ -43,7 +42,7 @@ const ModalAdd = ({ closeModal }) => {
 
         try {
             await mutateAsync(formData);
-            toast(`your new product adedd sucsessfuly`)
+            toast(`your new product added sucsessfuly ✅`)
             closeModal();
         } catch (error) {
             console.error("Upload error:", error);
