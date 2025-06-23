@@ -15,12 +15,13 @@ const Home = () => {
 
   return (
     <>
-      <div
-        className="bg-cover bg-center h-[300px] flex items-center justify-center text-white text-center px-4"
-        style={{ backgroundImage: "url('/logo.jpg')" }}
-      >
-     
-      </div>
+    <div
+  className="w-screen h-[300px] bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center px-4 mt-6"
+  style={{ backgroundImage: "url('/newLogo.jpg')" }}
+>
+  {/* محتوى هنا */}
+</div>
+
       <div
         className="flex justify-center items-center mt-8 space-x-8 py-4 bg-cover bg-center"
       >
