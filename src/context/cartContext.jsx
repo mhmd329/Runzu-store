@@ -36,38 +36,46 @@ export const ContextProvider = ({ children }) => {
     setIsOpen(false);
   };
 
-  const BuyCart = async (e, navigate) => {
-    e.preventDefault();
+ const BuyCart = async (e, navigate) => {
+  e.preventDefault();
 
-    if (cartItems.length === 0) {
-      toast.error(" cart empty");
-      return;
-    }
+  if (cartItems.length === 0) {
+    toast.error("السلة فارغة");
+    return;
+  }
 
-    if (!customerData.name || !customerData.address || !customerData.phone) {
-      toast.info("fill inputs info");
-      return;
-    }
+  if (!customerData.name || !customerData.address || !customerData.phone) {
+    toast.info("يجب ملء جميع بيانات العميل");
+    return;
+  }
 
-    const orderData = {
-      customer: customerData,
-      items: cartItems,
-      totalAmount: totalPrice,
-      date: new Date().toLocaleString(),
-    };
-
-    createOrder(orderData,
-      {
-        onSuccess: () => {
-          toast.success("order success ✅");
-          navigate('/');
-        },
-        onError: (error) => {
-          toast.error("server error");
-          console.error("Error while creating order:", error);
-        },
-      });
+  const orderData = {
+    name: customerData.name,       
+    phone: customerData.phone,    
+    address: customerData.address, 
+    products: cartItems.map(item => ({
+      name: item.name,
+      selectedSize: item.selectedSize,
+      quantity: item.quantity,
+      price: item.price,
+      Image: item.Image
+    })),
+    total: totalPrice
   };
+
+  createOrder(orderData, {
+    onSuccess: () => {
+      toast.success("تم إنشاء الطلب بنجاح ✅");
+      navigate('/');
+            setCartItems([]);
+            
+            sessionStorage.removeItem("cartItems");    },
+    onError: (error) => {
+      toast.error("خطأ في الخادم");
+      console.error("Error creating order:", error);
+    }
+  });
+};
 
 
   const handleAddToCart = (product) => {
@@ -75,12 +83,12 @@ export const ContextProvider = ({ children }) => {
     setCartItems((prevItems) => {
 
       const existingItem = prevItems.find(
-        (item) => item.id === product.id && item.selectedSize === product.selectedSize
+        (item) => item._id === product._id && item.selectedSize === product.selectedSize
       );
 
       if (existingItem) {
         return prevItems.map((item) =>
-          item.id === product.id && item.selectedSize === product.selectedSize
+          item._id === product._id && item.selectedSize === product.selectedSize
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -93,16 +101,16 @@ export const ContextProvider = ({ children }) => {
 
   const handleRemoveFromCart = (product) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product.id && item.selectedSize === product.selectedSize);
+      const existingItem = prevItems.find((item) => item._id === product._id && item.selectedSize === product.selectedSize);
       if (existingItem) {
         if (existingItem.quantity > 1) {
           return prevItems.map((item) =>
-            item.id === product.id && item.selectedSize === product.selectedSize
+            item._id === product._id && item.selectedSize === product.selectedSize
               ? { ...item, quantity: item.quantity - 1 }
               : item
           );
         } else {
-          return prevItems.filter((item) => item.id !== product.id || item.selectedSize !== product.selectedSize);
+          return prevItems.filter((item) => item._id !== product._id || item.selectedSize !== product.selectedSize);
         }
       }
       return prevItems;

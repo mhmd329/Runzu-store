@@ -49,11 +49,11 @@ const AdminProducts = () => {
                     </thead>
                     <tbody>
                         {products?.map((product) => (
-                            <tr key={product.id} className="hover:bg-gray-50">
+                            <tr key={product._id} className="hover:bg-gray-50">
                                 <td className="py-2 px-4 border-b">
                                     <img
                                         loading="lazy"
-                                        src={`https://back-runzu-production.up.railway.app${product?.gallery?.[0] || product.Image}`}
+                                        src={`http://localhost:3001${product?.gallery?.[0] || product.Image}`}
                                         alt={product.name}
                                         className="w-16 h-16 object-cover rounded"
                                     />
@@ -73,7 +73,7 @@ const AdminProducts = () => {
                                             <FaEdit />
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(product.id)}
+                                            onClick={() => handleDelete(product._id)}
                                             className="text-red-600 hover:text-red-800 cursor-pointer"
                                         >
                                             <FaTrash />

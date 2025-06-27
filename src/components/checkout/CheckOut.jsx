@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
   const { cartItems, customerData, totalPrice, BuyCart, handleCustomerInput } = useContext(Context);
   const navigate = useNavigate();
-
+const BASE_URL = import.meta.env.MODE === 'production'
+  ? import.meta.env.VITE_BASE_URL_PROD
+  : import.meta.env.VITE_BASE_URL_TEST;
   return (
     <div className="flex flex-col md:flex-row justify-around items-start gap-10 min-h-screen bg-gray-50 p-10">
       {/* Form Section */}
@@ -66,10 +68,10 @@ const Checkout = () => {
         <h2 className="text-xl font-semibold mb-4 text-center">your cart products</h2>
         <div className="space-y-4 max-h-[400px] overflow-y-auto">
           {cartItems.map((item, index) => (
-            <div key={item.id && index} className="flex gap-4 border-b pb-3">
+            <div key={item._id && index} className="flex gap-4 border-b pb-3">
               <img
                 loading="lazy"
-                src={`https://back-runzu-production.up.railway.app${item.Image}`}
+                src={`${BASE_URL}${item.Image}`}
                 alt={item.name}
                 className="w-16 h-16 rounded-md object-cover"
               />

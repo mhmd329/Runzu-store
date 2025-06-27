@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const Cart = () => {
   const { openCart, isOpen, totalQuantity, totalPrice, cartItems, closeCart, handleRemoveFromCart, handleAddToCart } = useContext(Context);
 
+const BASE_URL = import.meta.env.MODE === 'production'
+  ? import.meta.env.VITE_BASE_URL_PROD
+  : import.meta.env.VITE_BASE_URL_TEST;
   // داخل كمبوننت Cart
   const navigate = useNavigate();
 
@@ -66,7 +69,7 @@ const Cart = () => {
                   {/* صورة المنتج */}
                   <img
                     loading="lazy"
-                    src={`https://back-runzu-production.up.railway.app${item.Image}`}
+                    src={`${BASE_URL}${item.Image}`}
                     alt={item.name}
                     className="w-16 h-16 rounded-md object-cover"
                   />

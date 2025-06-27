@@ -38,7 +38,7 @@ const ModalEdit = ({ Product, closeModal }) => {
             formData.append("images", img);
         });
         try {
-            await mutate({ ProID: Product.id, formData });
+            await mutate({ ProID: Product._id, formData });
             toast("your product updated ✅")
             closeModal()
         } catch (error) {

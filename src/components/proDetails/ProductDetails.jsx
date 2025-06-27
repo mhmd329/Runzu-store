@@ -13,14 +13,17 @@ const ProductDetails = () => {
     handleSizeChange,
   } = useContext(Context);
 
-  const product = products.find((p) => p.id === Number(id));
+  const product = products.find((p) => p._id == String(id));
 
   if (!product) return <div className="text-center p-4">Product not found</div>;
 
+  const BASE_URL = import.meta.env.MODE === 'production'
+    ? import.meta.env.VITE_BASE_URL_PROD
+    : import.meta.env.VITE_BASE_URL_TEST;
   /* الصورة الرئيسيّة (تُضبط على أوّل صورة في الـ gallery) */
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [mainImage, setMainImage] = useState(
-    product.gallery?.[0] ? `https://back-runzu-production.up.railway.app${product.gallery[0]}` : `https://back-runzu-production.up.railway.app${product.Image}`
+    product.gallery?.[0] ? `${BASE_URL}${product.gallery[0]}` : `${BASE_URL}${product.Image}`
   );
 
 
@@ -46,13 +49,13 @@ const ProductDetails = () => {
         <div className="flex md:flex-col gap-3 md:gap-4 overflow-x-auto md:overflow-y-auto">
           {product.gallery.map((img, i) => (
             <img
-            loading="lazy"
+              loading="lazy"
               key={i}
-              src={`https://back-runzu-production.up.railway.app${img}`}
+              src={`${BASE_URL}${img}`}
               alt={`thumb-${i}`}
-              onClick={() => setMainImage(`https://back-runzu-production.up.railway.app${img}`)}
+              onClick={() => setMainImage(`${BASE_URL}${img}`)}
               className={`w-20 h-20 md:w-24 md:h-24 object-cover rounded-md cursor-pointer border-2
-  ${mainImage === `https://back-runzu-production.up.railway.app${img}` ? "border-gray-700" : "border-transparent"}
+  ${mainImage === `${BASE_URL}${img}` ? "border-gray-700" : "border-transparent"}
            `}
             />
 

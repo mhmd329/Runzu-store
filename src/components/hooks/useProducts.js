@@ -1,26 +1,29 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+const BASE_URL = import.meta.env.MODE === 'production'
+  ? import.meta.env.VITE_BASE_URL_PROD
+  : import.meta.env.VITE_BASE_URL_TEST;
 
 export const useGetProducts = () => {
     return useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const response = await fetch("https://back-runzu-production.up.railway.app/products");
+            const response = await fetch(`${BASE_URL}/products`);
             if (!response.ok) {
                 throw new Error("خطأ في جلب الطلبات");
             }
-            const data = await response.json();
-            return data;
+            return await response.json();
         },
-        refetchOnWindowFocus: false, // لمنع إعادة الجلب عند تركيز النافذة
-        retry: 1 // عدد المحاولات عند الفشل
+        refetchOnWindowFocus: false,
+        retry: 1
     });
-}
+};
 
 export const useDeleteProduct = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: async (ProID) => {
-            const response = await fetch(`https://back-runzu-production.up.railway.app/products/${ProID}`, {
+        mutationFn: async (productId) => {
+            const response = await fetch(`${BASE_URL}/products/${productId}`, {
                 method: "DELETE",
             });
 
@@ -28,40 +31,40 @@ export const useDeleteProduct = () => {
                 throw new Error("فشل في مسح المنتج");
             }
 
-            return response.json();
+            return await response.json();
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['products']); // تحديث قائمة المنتجات بعد الحذف
+            queryClient.invalidateQueries(['products']);
         },
     });
-}
+};
 
 export const useUpdateProduct = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: async ({formData, ProID}) => {
-            const response = await fetch(`https://back-runzu-production.up.railway.app/products/update/${ProID}`, {
+        mutationFn: async ({ formData, ProID }) => {
+            const response = await fetch(`${BASE_URL}/products/update/${ProID}`, {
                 method: "POST",
                 body: formData,
             });
+
             if (!response.ok) {
-                throw new Error("فشل في مسح المنتج");
+                throw new Error("فشل في تعديل المنتج");
             }
-            return response.json()
+
+            return await response.json();
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['products']); // تحديث قائمة المنتجات بعد الحذف
+            queryClient.invalidateQueries(['products']);
         },
-    })
-}
-
+    });
+};
 
 export const useAddProducts = () => {
     const queryClient = useQueryClient();
-
     return useMutation({
         mutationFn: async (formData) => {
-            const response = await fetch("https://back-runzu-production.up.railway.app/products", {
+            const response = await fetch(`${BASE_URL}/products`, {
                 method: "POST",
                 body: formData,
             });
@@ -70,10 +73,10 @@ export const useAddProducts = () => {
                 throw new Error("فشل في إضافة المنتج");
             }
 
-            return response.json();
+            return await response.json();
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(['products']); // تحديث قائمة المنتجات
+            queryClient.invalidateQueries(['products']);
         },
     });
 };

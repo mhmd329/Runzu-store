@@ -6,7 +6,7 @@ const ModalAdd = ({ closeModal }) => {
     const { mutateAsync } = useAddProducts();
 
     const [name, setName] = useState("");
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState("pants");
     const [price, setPrice] = useState("");
     const [status, setStatus] = useState("available");
     const [sizes, setSizes] = useState([]);
@@ -106,7 +106,7 @@ const ModalAdd = ({ closeModal }) => {
                 <div>
                     <label className="block">Sizes</label>
                     <div className="flex gap-2">
-                        {["S", "M", "L", "XL","XXL"].map((size) => (
+                        {["S", "M", "L", "XL", "XXL"].map((size) => (
                             <label key={size}>
                                 <input
                                     type="checkbox"

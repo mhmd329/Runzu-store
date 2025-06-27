@@ -13,12 +13,15 @@ const Tshirt = () => {
   ) || [];
   const navigate = useNavigate()
 
+const BASE_URL = import.meta.env.MODE === 'production'
+  ? import.meta.env.VITE_BASE_URL_PROD
+  : import.meta.env.VITE_BASE_URL_TEST;
   return (
     <div className="grid bg-gray-100 grid-cols-2 md:grid-cols-3 gap-6 p-4">
       {FilteredProducts.length > 0 ? (
         FilteredProducts.map((product, index) => (
           <motion.div
-            key={product.id}
+            key={product._id}
             className="bg-white flex flex-col shadow-md rounded-xl p-4 items-center text-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -26,9 +29,9 @@ const Tshirt = () => {
           >
             <img
               loading="lazy"
-              onClick={() => navigate(`/product/${product.id}`)}
+              onClick={() => navigate(`/product/${product._id}`)}
               className="w-28 h-28 object-cover rounded-md mb-2"
-              src={`https://back-runzu-production.up.railway.app${product.Image}`}
+              src={`${BASE_URL}${product.Image}`}
               alt={product.name}
             />
             <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
